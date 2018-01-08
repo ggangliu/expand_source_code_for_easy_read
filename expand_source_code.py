@@ -8,7 +8,6 @@ import os, re
 path = "E:\\00_Source Code\\rrul62b40"
 os_process = 'OS_PROCESS('
 match_pattern_os = r'OS_PROCESS\((.*?)\)'
-
 test_str = r'OS_PROCESS(XEPP)/*lint -esym(714, XEPP)*/'
 
 
@@ -24,14 +23,18 @@ def check_and_modified_file(file_name):
     with open(file_name, 'r') as f:
         lines = f.readlines()
 
-    with open(file_name, "w") as f_w:
+    try:
+        f_w = open(file_name, "w")
         for line in lines:
             func_name = re.match(match_pattern_os, line)
             if func_name:
                 print file_name, line
-                line = line.replace("OS_PROCESS({0})".format(func_name.group(1)), "void {0}(void)".format(func_name.group(1)))
+                line = line.replace("OS_PROCESS({0})".format(func_name.group(1)),
+                                    "void {0}(void)".format(func_name.group(1)))
                 print file_name, line
             f_w.write(line)
+    except (Exception) as ex:
+        print(ex)
 
 
 def each_file(file_path):
