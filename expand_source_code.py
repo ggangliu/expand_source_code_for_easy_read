@@ -5,7 +5,7 @@ import os, re
 替换源代码中的OS_PROCESS(func_name)，将其替换为函数头的形式void func_name(void)
 '''
 
-path = "E:\\00_Source Code\\rrul62b40"
+path = "E:\\00_Source Code\\r40"
 os_process = 'OS_PROCESS('
 match_pattern_os = r'OS_PROCESS\((.*?)\)'
 test_str = r'OS_PROCESS(XEPP)/*lint -esym(714, XEPP)*/'
